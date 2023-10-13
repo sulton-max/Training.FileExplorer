@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\Training.FileExplorer.Api.props" />
+</Project>

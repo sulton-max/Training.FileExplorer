@@ -1,7 +1,7 @@
 import type {AxiosInstance, AxiosRequestConfig, AxiosResponse} from "axios";
 import axios, {AxiosError} from "axios";
-import {ProblemDetails} from "@/models/response/problemDetails";
-import {ApiResponse} from "@/models/response/apiResponse";
+import { ApiResponse } from "@/models/api/apiResponse";
+import type { ProblemDetails } from "@/models/api/problemDetails";
 
 export default class ApiClientBase {
     public readonly client: AxiosInstance;
@@ -11,11 +11,11 @@ export default class ApiClientBase {
 
         this.client.interceptors.response.use(
             (response: AxiosResponse) => {
-                return new ApiResponse(response.status, response.data, null);
+                return new ApiResponse(response.data, null, response.status);
             },
             (error: AxiosError) => {
                 return error.response
-                    ? Promise.reject(new ApiResponse(error.response.status, null, error.response.data as ProblemDetails))
+                    ? Promise.reject(new ApiResponse(null, error.response.data as ProblemDetails, error.response.status))
                     : Promise.reject(error);
             }
         );
@@ -40,7 +40,7 @@ export default class ApiClientBase {
     private async handleResponseAsync<T>(request: Promise<AxiosResponse<T>>): Promise<ApiResponse<T>> {
         try {
             const response = await request;
-            return new ApiResponse<T>(response.status, response.data, null);
+            return new ApiResponse<T>(response.data, null, response.status);
         } catch (error) {
             return error as ApiResponse<T>;
         }
