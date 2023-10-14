@@ -46,7 +46,7 @@ import { ExplorerItemType } from "@/infrastructure/models/entities/ExplorerItemT
 import type { DriveInfo } from "@/infrastructure/models/entities/DriveInfo";
 import DriveCard from "@/modules/explorerGrid/components/DriveCard.vue";
 import { ExplorerApiClient } from "@/infrastructure/apiClients/ExplorerApiClient";
-import FolderCard from "@/modules/explorerGrid/components/FolderCard.vue";
+import FolderCard from "@/modules/explorerGrid/components/DirectoryCard.vue";
 import FileCard from "@/modules/explorerGrid/components/FileCard.vue";
 
 // apiClients
@@ -66,8 +66,8 @@ const loadItems = async () => {
   }
 };
 
-const handleFetchDriveEntriesAsync = async (driveName: string) => {
-  const result = await explorerApiClient.drives.getDriveEntriesAsync(driveName);
+const handleFetchDriveEntriesAsync = async (drivePath: string) => {
+  const result = await explorerApiClient.drives.getDriveEntriesAsync(drivePath);
   if (result.response) {
     items.value.length = 0;
     result.response.forEach((item: IExplorerItem) => {

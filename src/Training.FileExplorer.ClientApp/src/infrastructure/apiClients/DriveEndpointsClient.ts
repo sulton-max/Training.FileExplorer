@@ -12,7 +12,7 @@ export class DriveEndpointsClient {
         return await this.client.getAsync<Array<DriveInfo>>("drives");
     }
 
-    public async getDriveEntriesAsync(driveName: string) {
-        return await this.client.getAsync<Array<DriveInfo>>(`drives/${driveName}`);
+    public async getDriveEntriesAsync(drivePath: string) {
+        return await this.client.getAsync<Array<DriveInfo>>(`drives/${drivePath}`);
     }
 }

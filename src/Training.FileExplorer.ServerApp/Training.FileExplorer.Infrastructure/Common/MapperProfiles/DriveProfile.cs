@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using Training.FileExplorer.Application.FileStorage.Models;
 
-namespace Training.FileExplorer.Application.Common.MapperProfiles;
+namespace Training.FileExplorer.Infrastructure.Common.MapperProfiles;
 
 public class DriveProfile : Profile
 {
@@ -15,6 +15,6 @@ public class DriveProfile : Profile
             .ForMember(src => src.TotalSpace, opt => opt.MapFrom(dest => dest.TotalSize))
             .ForMember(src => src.FreeSpace, opt => opt.MapFrom(dest => dest.AvailableFreeSpace))
             .ForMember(src => src.UnavailableSpace, opt => opt.MapFrom(dest => dest.TotalFreeSpace - dest.AvailableFreeSpace))
-            .ForMember(src => src.UsedSpace, opt => opt.MapFrom(dest => dest.TotalSize - dest.TotalFreeSpace))
+            .ForMember(src => src.UsedSpace, opt => opt.MapFrom(dest => dest.TotalSize - dest.TotalFreeSpace));
     }
 }

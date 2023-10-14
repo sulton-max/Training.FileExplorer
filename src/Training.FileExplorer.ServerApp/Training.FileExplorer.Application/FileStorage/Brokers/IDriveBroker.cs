@@ -1,6 +1,8 @@
-﻿namespace Training.FileExplorer.Application.FileStorage.Brokers;
+﻿using Training.FileExplorer.Application.FileStorage.Models;
 
-public class IDriveBroker
+namespace Training.FileExplorer.Application.FileStorage.Brokers;
+
+public interface IDriveBroker
 {
-    
+    IEnumerable<StorageDriveInfo> Get();
 }

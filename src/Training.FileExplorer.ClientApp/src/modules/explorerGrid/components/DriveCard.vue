@@ -1,6 +1,6 @@
 <template>
 
-  <grid-item-card @click="emit('onFetchDriveEntries', drive.name)">
+  <grid-item-card @click="emit('onFetchDriveEntries', drive.path)">
 
     <div class="p-2 px-4 flex flex-col items-center justify-center">
 
@@ -50,7 +50,8 @@ const emit = defineEmits<{
 }>();
 
 const fetchDriveEntries = async () => {
-  emit('onFetchDriveEntries', props.drive);
+  console.log('path', props.drive.path);
+  emit('onFetchDriveEntries', props.drive.path);
 }
 
 Chart.register(ArcElement);

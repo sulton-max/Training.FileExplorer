@@ -3,6 +3,6 @@
 public enum StorageItemType
 {
     Drive,
-    Folder,
+    Directory,
     File
 }

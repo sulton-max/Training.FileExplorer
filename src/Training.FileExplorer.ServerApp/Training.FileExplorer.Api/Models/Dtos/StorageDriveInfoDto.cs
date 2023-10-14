@@ -1,14 +1,16 @@
-﻿namespace Training.FileExplorer.Application.FileStorage.Models;
+﻿using Training.FileExplorer.Application.FileStorage.Models;
 
-public class DriveInfoDto
+namespace Training.FileExplorer.Api.Models.Dtos;
+
+public class StorageDriveInfoDto
 {
     public string Name { get; set; } = string.Empty;
+
+    public string Path { get; set; } = string.Empty;
 
     public string Format { get; set; } = string.Empty;
 
     public string Type { get; set; } = string.Empty;
-
-    public string VolumeLabel { get; set; } = string.Empty;
 
     public long TotalSpace { get; set; }
 
@@ -18,5 +20,5 @@ public class DriveInfoDto
 
     public long UsedSpace { get; set; }
 
-    public StorageItemType ItemType { get; set; } = StorageItemType.Drive;
+    public StorageItemType ItemType { get; set; }
 }

@@ -1,5 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
 using Training.FileExplorer.Application.FileStorage.Models;
+using Training.FileExplorer.Application.FileStorage.Services;
 
 namespace Training.FileExplorer.Api.Controllers;
 
@@ -7,31 +9,28 @@ namespace Training.FileExplorer.Api.Controllers;
 [Route("api/[controller]")]
 public class DrivesController : ControllerBase
 {
+    private readonly IMapper _mapper;
+    private readonly IDriveService _driveService;
+
+    public DrivesController(IMapper mapper, IDriveService driveService)
+    {
+        _mapper = mapper;
+        _driveService = driveService;
+    }
+
     [HttpGet]
-    public ValueTask<IActionResult> Get()
+    public async ValueTask<IActionResult> Get()
     {
-        var drives = DriveInfo.GetDrives();
-        var driveNames = drives.Select(drive => new DriveInfoDto
-        {
-            Name = drive.Name,
-            Format = drive.DriveFormat,
-            Type = drive.DriveType.ToString(),
-            VolumeLabel = drive.VolumeLabel,
-            TotalSpace = drive.TotalSize,
-            FreeSpace = drive.AvailableFreeSpace,
-            UnavailableSpace = ,
-            UsedSpace = drive.TotalSize - drive.TotalFreeSpace
-        });
-
-        return new ValueTask<IActionResult>(Ok(driveNames));
+        var data = await _driveService.GetAsync();
+        var result = _mapper.Map<IEnumerable<StorageDriveInfo>>(data);
+        return result.Any() ? Ok(result) : NoContent();
     }
 
-    [HttpGet("{driveName}")]
-    public ValueTask<IActionResult> GetDriveEntries([FromRoute]string driveName)
+    [HttpGet("{drivePath}")]
+    public async ValueTask<IActionResult> GetDriveEntries([FromRoute] string drivePath)
     {
-        var directories = Directory.GetDirectories(driveName);
-        var files = Directory.GetFiles(driveName);
-
+        var data = await _driveService.GetDriveEntriesAsync(drivePath);
+        var result = _mapper.Map<IEnumerable<IStorageItem>>(data);
+        return result.Any() ? Ok(result) : NoContent();
     }
-
 }

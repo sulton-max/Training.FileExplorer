@@ -1,6 +1,8 @@
-﻿namespace Training.FileExplorer.Infrastructure.FileStorage.Services;
+﻿using Training.FileExplorer.Application.FileStorage.Services;
 
-public class FileService
+namespace Training.FileExplorer.Infrastructure.FileStorage.Services;
+
+public class FileService : IFileService
 {
     
 }
