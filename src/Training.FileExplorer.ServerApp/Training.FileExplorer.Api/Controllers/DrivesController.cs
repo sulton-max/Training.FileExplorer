@@ -17,11 +17,21 @@ public class DrivesController : ControllerBase
             Format = drive.DriveFormat,
             Type = drive.DriveType.ToString(),
             VolumeLabel = drive.VolumeLabel,
-            TotalSize = drive.TotalSize,
-            AvailableFreeSpace = drive.AvailableFreeSpace,
-            TotalFreeSpace = drive.TotalFreeSpace
+            TotalSpace = drive.TotalSize,
+            FreeSpace = drive.AvailableFreeSpace,
+            UnavailableSpace = drive.TotalFreeSpace - drive.AvailableFreeSpace,
+            UsedSpace = drive.TotalSize - drive.TotalFreeSpace
         });
 
         return new ValueTask<IActionResult>(Ok(driveNames));
     }
+
+    [HttpGet("{driveName}")]
+    public ValueTask<IActionResult> GetDriveEntries([FromRoute]string driveName)
+    {
+        var directories = Directory.GetDirectories(driveName);
+        var files = Directory.GetFiles(driveName);
+
+    }
+
 }

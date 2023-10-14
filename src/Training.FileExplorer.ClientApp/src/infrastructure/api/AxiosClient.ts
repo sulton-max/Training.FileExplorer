@@ -1,6 +1,6 @@
 import type { AxiosInstance, AxiosRequestConfig, AxiosResponse } from "axios";
 import axios, { AxiosError } from "axios";
-import type { IMappable } from "@/models/entities/iMappable";
+import type { IMappable } from "@/infrastructure/models/entities/iMappable";
 import { ApiResponse } from "@/infrastructure/api/ApiResponse";
 import type { ProblemDetails } from "@/infrastructure/api/ProblemDetails";
 
@@ -12,27 +12,6 @@ export default class ApiClientBase {
 
         this.client.interceptors.response.use(
             <TResponse extends IMappable<TResponse> | Array<IMappable<TResponse>>>(response: AxiosResponse<TResponse>) => {
-
-                // if (Array.isArray(response.data)) {
-                //     const data = response.data as Array<IMappable<TResponse>>;
-                //     console.log('data', data);
-                //
-                //     data.map(item => item.map(item));
-                //
-                //     return {
-                //         ...response,
-                //         data: new ApiResponse(data, null, response.status)
-                //     };
-                // } else {
-                //     const data = response.data as IMappable<TResponse>;
-                //     data.map(data);
-                //
-                //     return {
-                //         ...response,
-                //         data: new ApiResponse(data, null, response.status)
-                //     };
-                // }
-
                 return {
                     ...response,
                     data: Array.isArray(response.data)

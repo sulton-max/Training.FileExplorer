@@ -1,3 +1,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+    .grid-icon {
+        @apply w-20 h-20;
+    }
+}

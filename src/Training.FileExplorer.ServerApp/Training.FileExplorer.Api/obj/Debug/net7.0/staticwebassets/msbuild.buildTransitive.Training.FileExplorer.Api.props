@@ -1,3 +1,0 @@
-﻿<Project>
-  <Import Project="..\buildMultiTargeting\Training.FileExplorer.Api.props" />
-</Project>

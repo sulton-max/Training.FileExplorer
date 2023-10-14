@@ -11,6 +11,5 @@
 </template>
 
 <script setup lang="ts">
-import TheWelcome from '../components/TheWelcome.vue'
-import ExplorerGrid from "@/components/ExplorerGrid.vue";
+import ExplorerGrid from "@/modules/explorerGrid/components/ExplorerGrid.vue";
 </script>

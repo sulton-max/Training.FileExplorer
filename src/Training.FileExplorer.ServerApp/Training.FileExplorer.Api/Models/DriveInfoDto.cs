@@ -10,11 +10,13 @@ public class DriveInfoDto
 
     public string VolumeLabel { get; set; } = string.Empty;
 
-    public long TotalSize { get; set; }
+    public long TotalSpace { get; set; }
 
-    public long AvailableFreeSpace { get; set; }
+    public long FreeSpace { get; set; }
 
-    public long TotalFreeSpace { get; set; }
+    public long UnavailableSpace { get; set; }
+
+    public long UsedSpace { get; set; }
 
     public ExplorerItemType ItemType { get; set; } = ExplorerItemType.Drive;
 }
