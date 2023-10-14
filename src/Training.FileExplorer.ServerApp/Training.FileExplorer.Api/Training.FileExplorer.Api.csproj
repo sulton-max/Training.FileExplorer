@@ -11,7 +11,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="FileStorage\Services\" />
+      <ProjectReference Include="..\Training.FileExplorer.Infrastructure\Training.FileExplorer.Infrastructure.csproj" />
     </ItemGroup>
 
 </Project>
