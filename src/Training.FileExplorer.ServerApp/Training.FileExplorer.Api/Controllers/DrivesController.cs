@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Training.FileExplorer.Api.Models;
+using Training.FileExplorer.Application.FileStorage.Models;
 
 namespace Training.FileExplorer.Api.Controllers;
 
@@ -19,7 +19,7 @@ public class DrivesController : ControllerBase
             VolumeLabel = drive.VolumeLabel,
             TotalSpace = drive.TotalSize,
             FreeSpace = drive.AvailableFreeSpace,
-            UnavailableSpace = drive.TotalFreeSpace - drive.AvailableFreeSpace,
+            UnavailableSpace = ,
             UsedSpace = drive.TotalSize - drive.TotalFreeSpace
         });
 

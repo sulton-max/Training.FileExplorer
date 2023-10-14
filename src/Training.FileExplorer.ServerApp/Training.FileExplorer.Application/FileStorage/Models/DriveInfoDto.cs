@@ -1,4 +1,4 @@
-﻿namespace Training.FileExplorer.Api.Models;
+﻿namespace Training.FileExplorer.Application.FileStorage.Models;
 
 public class DriveInfoDto
 {
@@ -18,5 +18,5 @@ public class DriveInfoDto
 
     public long UsedSpace { get; set; }
 
-    public ExplorerItemType ItemType { get; set; } = ExplorerItemType.Drive;
+    public StorageItemType ItemType { get; set; } = StorageItemType.Drive;
 }

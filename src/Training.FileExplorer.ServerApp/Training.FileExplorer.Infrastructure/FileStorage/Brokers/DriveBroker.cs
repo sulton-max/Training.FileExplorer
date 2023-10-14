@@ -1,6 +1,6 @@
-﻿using Training.FileExplorer.Api.FileStorage.Brokers.Interfaces;
+﻿using Training.FileExplorer.Application.FileStorage.Brokers;
 
-namespace Training.FileExplorer.Api.FileStorage.Brokers;
+namespace Training.FileExplorer.Infrastructure.FileStorage.Brokers;
 
 public class DriveBroker : IDriveBroker
 {

@@ -1,4 +1,4 @@
-﻿namespace Training.FileExplorer.Api.FileStorage.Brokers.Interfaces;
+﻿namespace Training.FileExplorer.Application.FileStorage.Brokers;
 
 public interface IDirectoryBroker
 {
