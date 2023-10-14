@@ -1,4 +1,4 @@
-import ApiClientBase from "@/models/api/axiosClient";
+import ApiClientBase from "@/infrastructure/api/AxiosClient";
 import type { DriveInfo } from "@/models/entities/DriveInfo";
 
 export class DriveService extends ApiClientBase {

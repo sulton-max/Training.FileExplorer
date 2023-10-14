@@ -1,6 +1,6 @@
-import type { IExplorerItem } from "@/models/entities/IExplorerItem";
+import type { IExplorerItem } from "@/models/entities/iIExplorerItem";
 
-export class FolderInfo implements IExplorerItem {
+export class FolderInfo implements IExplorearItem {
     public name: string;
     public path: string;
     public explorerItemType: string;

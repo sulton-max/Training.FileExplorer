@@ -1,4 +1,4 @@
-import type { ProblemDetails } from "@/models/api/problemDetails";
+import type { ProblemDetails } from "@/infrastructure/api/ProblemDetails";
 
 export class ApiResponse<T> {
     public response: T | null;

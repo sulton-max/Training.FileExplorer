@@ -30,3 +30,4 @@ D:\Projects\Repositories\Training\Training.FileExplorer\src\Training.FileExplore
 D:\Projects\Repositories\Training\Training.FileExplorer\src\Training.FileExplorer.ServerApp\Training.FileExplorer.Api\bin\Debug\net7.0\Swashbuckle.AspNetCore.SwaggerGen.dll
 D:\Projects\Repositories\Training\Training.FileExplorer\src\Training.FileExplorer.ServerApp\Training.FileExplorer.Api\bin\Debug\net7.0\Swashbuckle.AspNetCore.SwaggerUI.dll
 D:\Projects\Repositories\Training\Training.FileExplorer\src\Training.FileExplorer.ServerApp\Training.FileExplorer.Api\obj\Debug\net7.0\Training.FileExplorer.Api.csproj.CopyComplete
+D:\Projects\Repositories\Training\Training.FileExplorer\src\Training.FileExplorer.ServerApp\Training.FileExplorer.Api\obj\Debug\net7.0\Training.FileExplorer.Api.sourcelink.json

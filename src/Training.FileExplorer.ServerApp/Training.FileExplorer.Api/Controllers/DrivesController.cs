@@ -11,7 +11,7 @@ public class DrivesController : ControllerBase
     public ValueTask<IActionResult> Get()
     {
         var drives = DriveInfo.GetDrives();
-        var driveNames = drives.Select(drive => new DriveInfoDto()
+        var driveNames = drives.Select(drive => new DriveInfoDto
         {
             Name = drive.Name,
             Format = drive.DriveFormat,
