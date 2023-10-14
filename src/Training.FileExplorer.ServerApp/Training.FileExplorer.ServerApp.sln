@@ -2,6 +2,10 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Training.FileExplorer.Api", "Training.FileExplorer.Api\Training.FileExplorer.Api.csproj", "{483B1697-2C33-4F3B-A343-9978EE468E6D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Training.FileExplorer.Application", "Training.FileExplorer.Application\Training.FileExplorer.Application.csproj", "{27D083E1-20C5-498A-BA22-C13996C65B41}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Training.FileExplorer.Infrastructure", "Training.FileExplorer.Infrastructure\Training.FileExplorer.Infrastructure.csproj", "{437D4C32-FDE4-4FB0-99E1-38043A13CC81}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -12,5 +16,13 @@ Global
 		{483B1697-2C33-4F3B-A343-9978EE468E6D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{483B1697-2C33-4F3B-A343-9978EE468E6D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{483B1697-2C33-4F3B-A343-9978EE468E6D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{27D083E1-20C5-498A-BA22-C13996C65B41}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{27D083E1-20C5-498A-BA22-C13996C65B41}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{27D083E1-20C5-498A-BA22-C13996C65B41}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{27D083E1-20C5-498A-BA22-C13996C65B41}.Release|Any CPU.Build.0 = Release|Any CPU
+		{437D4C32-FDE4-4FB0-99E1-38043A13CC81}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{437D4C32-FDE4-4FB0-99E1-38043A13CC81}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{437D4C32-FDE4-4FB0-99E1-38043A13CC81}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{437D4C32-FDE4-4FB0-99E1-38043A13CC81}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

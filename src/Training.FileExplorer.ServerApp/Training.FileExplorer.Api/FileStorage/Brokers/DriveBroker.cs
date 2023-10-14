@@ -1,6 +1,8 @@
-﻿namespace Training.FileExplorer.Api.FileStorage.Brokers;
+﻿using Training.FileExplorer.Api.FileStorage.Brokers.Interfaces;
 
-public class DriveBroker
+namespace Training.FileExplorer.Api.FileStorage.Brokers;
+
+public class DriveBroker : IDriveBroker
 {
     
 }
