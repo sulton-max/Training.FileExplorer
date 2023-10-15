@@ -1,6 +1,6 @@
 <template>
 
-  <grid-item-card @click="emit('onFetchDriveEntries', drive.path)">
+  <grid-item-card @click="emit('onFetchDriveEntries', drive.label)">
 
     <div class="p-2 px-4 flex flex-col items-center justify-center">
 
@@ -36,11 +36,11 @@
 import GridItemCard from "@/components/GridItemCard.vue";
 import { Chart, ChartItem, DoughnutController, ArcElement } from "chart.js";
 import { onMounted, ref } from "vue";
-import type { DriveInfo } from "@/infrastructure/models/entities/DriveInfo";
+import type { StorageDrive } from "@/infrastructure/models/entities/StorageDrive";
 
 const props = defineProps({
   drive: {
-    type: Object as () => DriveInfo,
+    type: Object as () => StorageDrive,
     required: true
   }
 });
@@ -48,11 +48,6 @@ const props = defineProps({
 const emit = defineEmits<{
   onFetchDriveEntries: [driveName: string]
 }>();
-
-const fetchDriveEntries = async () => {
-  console.log('path', props.drive.path);
-  emit('onFetchDriveEntries', props.drive.path);
-}
 
 Chart.register(ArcElement);
 Chart.register(DoughnutController);

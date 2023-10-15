@@ -5,11 +5,11 @@ using Training.FileExplorer.Application.FileStorage.Models.Storage;
 
 namespace Training.FileExplorer.Api.Common.MapperProfiles;
 
-public class StorageItemProfile : Profile
+public class DirectoryProfile : Profile
 {
-    public StorageItemProfile()
+    public DirectoryProfile()
     {
-        CreateMap<IStorageItem, IStorageItemDto>();
-        CreateMap<IStorageItemDto, IStorageItem>();
+        CreateMap<StorageDirectory, StorageDirectoryDto>();
+        CreateMap<StorageDirectoryDto, StorageDirectory>();
     }
 }

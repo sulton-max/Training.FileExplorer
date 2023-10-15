@@ -1,4 +1,4 @@
-﻿namespace Training.FileExplorer.Application.FileStorage.Models;
+﻿namespace Training.FileExplorer.Application.FileStorage.Models.Storage;
 
 public class StorageItem : IStorageItem
 {

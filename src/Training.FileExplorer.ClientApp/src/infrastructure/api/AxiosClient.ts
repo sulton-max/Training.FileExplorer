@@ -11,12 +11,10 @@ export default class ApiClientBase {
         this.client = axios.create(config);
 
         this.client.interceptors.response.use(
-            <TResponse extends IMappable<TResponse> | Array<IMappable<TResponse>>>(response: AxiosResponse<TResponse>) => {
+            <TResponse>(response: AxiosResponse<TResponse>) => {
                 return {
                     ...response,
-                    data: Array.isArray(response.data)
-                        ? new ApiResponse(response.data as Array<IMappable<TResponse>>, null, response.status)
-                        : new ApiResponse(response.data as IMappable<TResponse>, null, response.status)
+                    data: new ApiResponse(response.data as TResponse, null, response.status)
                 }
             },
             (error: AxiosError) => {

@@ -1,4 +1,4 @@
-import type { DriveInfo } from "@/infrastructure/models/entities/DriveInfo";
+import type { StorageDrive } from "@/infrastructure/models/entities/StorageDrive";
 import ApiClientBase from "@/infrastructure/api/AxiosClient";
 
 export class DriveEndpointsClient {
@@ -9,10 +9,10 @@ export class DriveEndpointsClient {
     }
 
     public async getDrivesAsync() {
-        return await this.client.getAsync<Array<DriveInfo>>("drives");
+        return await this.client.getAsync<Array<StorageDrive>>("drives");
     }
 
-    public async getDriveEntriesAsync(drivePath: string) {
-        return await this.client.getAsync<Array<DriveInfo>>(`drives/${drivePath}`);
+    public async getDriveEntriesAsync(driveLabel: string) {
+        return await this.client.getAsync<Array<StorageDrive>>(`drives/${driveLabel}/entries`);
     }
 }

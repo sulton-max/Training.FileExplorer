@@ -1,6 +1,6 @@
-import type { ExplorerItemType } from "@/infrastructure/models/entities/ExplorerItemType";
+import type { StorageItemType } from "@/infrastructure/models/entities/StorageItemType";
 
-export interface IExplorerItem {
+export interface IStorageItem {
     path: string;
-    itemType: ExplorerItemType;
+    itemType: StorageItemType;
 }

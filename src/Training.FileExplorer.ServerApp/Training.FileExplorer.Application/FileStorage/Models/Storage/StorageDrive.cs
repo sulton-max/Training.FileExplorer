@@ -1,8 +1,10 @@
-﻿namespace Training.FileExplorer.Application.FileStorage.Models;
+﻿namespace Training.FileExplorer.Application.FileStorage.Models.Storage;
 
-public class StorageDriveInfo : IStorageItem
+public class StorageDrive : IStorageItem
 {
     public string Name { get; set; } = string.Empty;
+
+    public string Label { get; set; } = string.Empty;
 
     public string Path { get; set; } = string.Empty;
 

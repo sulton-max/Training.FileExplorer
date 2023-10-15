@@ -3,9 +3,7 @@ using Training.FileExplorer.Application.FileStorage.Models.Storage;
 
 namespace Training.FileExplorer.Application.FileStorage.Services;
 
-public interface IDirectoryService
+public interface IDriveProcessingService
 {
-    ValueTask<IList<StorageDirectory>> GetSubDirectoriesAsync(string directoryPath);
-
-    ValueTask<StorageDirectory?> GetByPathAsync(string directoryPath);
+    ValueTask<List<IStorageItem>> GetDriveEntriesAsync(string driveLabel);
 }
