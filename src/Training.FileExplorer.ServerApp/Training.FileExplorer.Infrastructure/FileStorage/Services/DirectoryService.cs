@@ -12,6 +12,9 @@ public class DirectoryService : IDirectoryService
     private readonly IDirectoryBroker _broker;
     private readonly IMapper _mapper;
 
+    // FakeDirectoryBroker - test
+    // DirectoryBroker - production, development
+
     public DirectoryService(IDirectoryBroker broker, IMapper mapper)
     {
         _broker = broker;

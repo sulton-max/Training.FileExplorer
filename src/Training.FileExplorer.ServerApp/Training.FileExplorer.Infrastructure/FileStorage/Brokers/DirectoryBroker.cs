@@ -18,7 +18,7 @@ public class DirectoryBroker : IDirectoryBroker
 
     public IEnumerable<string> GetDirectoriesPath(string directoryPath) => Directory.EnumerateDirectories(directoryPath);
 
-    public IEnumerable<string> GetFilesPath(string directoryPath) => Directory.GetFiles(directoryPath);
+    public IEnumerable<string> GetFilesPath(string directoryPath) => Directory.EnumerateFiles(directoryPath);
 
     public StorageDirectory GetByPathAsync(string directoryPath) => _mapper.Map<StorageDirectory>(new DirectoryInfo(directoryPath));
 

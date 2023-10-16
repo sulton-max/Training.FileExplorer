@@ -5,7 +5,7 @@
         <!-- Grid items view -->
         <div>
             <div class="grid grid-cols-3 gap-5">
-                <div v-for="item in items" :key="item.path">
+                <div v-for="item in gridItems" :key="item.path">
 
                     <div v-if="item.itemType == StorageItemType.Drive">
                         <drive-card @click="" :drive="item as StorageDrive"
@@ -18,7 +18,7 @@
                     </div>
 
                     <div v-else-if="item.itemType == StorageItemType.File">
-                        <file-card :drive="item as StorageDrive"></file-card>
+                        <file-card :file="item as StorageFile"></file-card>
                     </div>
 
                     <div>
@@ -47,49 +47,60 @@ import DirectoryCard from "@/modules/explorerGrid/components/DirectoryCard.vue";
 import { StorageDirectory } from "@/infrastructure/models/entities/StorageDirectory";
 import { FilterPagination } from "@/infrastructure/models/filtering/FilterPagination";
 import { StorageDriveEntryFilterModel } from "@/infrastructure/models/filtering/StorageDriveEntryFilterModel";
+import type { StorageFile } from "@/infrastructure/models/entities/StorageFile";
 
 // apiClients
 const explorerApiClient = new ExplorerApiClient();
 
 // const driveService = new DriveEndpoints();
 
-const items = ref<Array<IStorageEntry>>([]);
+const gridItems = ref<Array<IStorageEntry>>([]);
 
 const loadItems = async () => {
     const result = await explorerApiClient.drives.getDrivesAsync();
     if (result.response) {
-        items.value.length = 0;
+        gridItems.value.length = 0;
         result.response.forEach((item: IStorageEntry) => {
-            items.value.push(item);
+            gridItems.value.push(item);
         });
     }
 };
 
 const handleFetchDriveEntriesAsync = (drivePath: string) => {
-    fetchDriveEntriesAsync(drivePath);
+    fetchDirectoryEntriesAsync(drivePath);
 };
 
 const handleOpenDirectoryAsync = (directoryPath: string) => {
-    fetchDriveEntriesAsync(directoryPath);
+    console.log('event', directoryPath);
+    fetchDirectoryEntriesAsync(directoryPath);
 }
 
-const fetchDriveEntriesAsync = async (directoryPath: string | null = null) => {
+const fetchDirectoryEntriesAsync = async (directoryPath: string | null = null) => {
     const filterModel = new StorageDriveEntryFilterModel(20, 1, true, true);
 
     const result = directoryPath
         ? await explorerApiClient.directories.getEntriesAsync(directoryPath, filterModel)
         : await explorerApiClient.directories.getRootEntriesAsync(filterModel);
 
+    console.log('result', result);
+
     if (result.response) {
-        items.value.length = 0;
+        gridItems.value.length = 0;
         result.response.forEach((item: IStorageEntry) => {
-            items.value.push(item);
+            gridItems.value.push(item);
         });
     }
 }
 
+const updateGridItems = (items: Array<IStorageEntry>) => {
+    items.value.length = 0;
+    items.forEach((item: IStorageEntry) => {
+        items.value.push(item);
+    });
+}
+
 onMounted(() => {
-    fetchDriveEntriesAsync();
+    fetchDirectoryEntriesAsync();
     // loadItems();
 });
 

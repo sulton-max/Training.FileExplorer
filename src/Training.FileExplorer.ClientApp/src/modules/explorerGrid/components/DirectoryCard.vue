@@ -35,6 +35,4 @@ const props = defineProps({
     }
 });
 
-console.log('directory', props.directory);
-
 </script>

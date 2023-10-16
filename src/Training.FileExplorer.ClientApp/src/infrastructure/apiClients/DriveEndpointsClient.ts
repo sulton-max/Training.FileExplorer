@@ -17,7 +17,6 @@ export class DriveEndpointsClient {
         const encodedDrivePath = encodeURIComponent(drivePath);
         const queryString = paginationOptions.convertToQueryParams();
 
-        console.log(queryString.toString());
         return await this.client.getAsync<Array<StorageDrive>>(`drives/${encodedDrivePath}/entries?${queryString}`);
     }
 }
