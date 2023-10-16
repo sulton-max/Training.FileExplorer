@@ -2,7 +2,7 @@ namespace Training.FileExplorer.Application.Common.Models.Filtering;
 
 public class FilterPagination : FilterModelBase
 {
-    public long PageSize { get; set; }
+    public int PageSize { get; set; } = 10;
 
-    public long PageToken { get; set; }
+    public int PageToken { get; set; } = 1;
 }

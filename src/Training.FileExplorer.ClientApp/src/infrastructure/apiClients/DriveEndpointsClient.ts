@@ -1,5 +1,6 @@
 import type { StorageDrive } from "@/infrastructure/models/entities/StorageDrive";
 import ApiClientBase from "@/infrastructure/api/AxiosClient";
+import type { FilterPagination } from "@/infrastructure/models/filtering/FilterPagination";
 
 export class DriveEndpointsClient {
     private client: ApiClientBase;
@@ -12,7 +13,11 @@ export class DriveEndpointsClient {
         return await this.client.getAsync<Array<StorageDrive>>("drives");
     }
 
-    public async getDriveEntriesAsync(driveLabel: string) {
-        return await this.client.getAsync<Array<StorageDrive>>(`drives/${driveLabel}/entries`);
+    public async getDriveEntriesAsync(drivePath: string, paginationOptions: FilterPagination) {
+        const encodedDrivePath = encodeURIComponent(drivePath);
+        const queryString = paginationOptions.convertToQueryParams();
+
+        console.log(queryString.toString());
+        return await this.client.getAsync<Array<StorageDrive>>(`drives/${encodedDrivePath}/entries?${queryString}`);
     }
 }

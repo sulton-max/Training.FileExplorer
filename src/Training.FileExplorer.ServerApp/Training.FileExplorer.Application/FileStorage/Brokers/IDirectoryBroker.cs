@@ -12,4 +12,6 @@ public interface IDirectoryBroker
     StorageDirectory GetByPathAsync(string directoryPath);
 
     bool ExistsAsync(string directoryPath);
+
+    bool SetAccessControl(string directoryPath);
 }

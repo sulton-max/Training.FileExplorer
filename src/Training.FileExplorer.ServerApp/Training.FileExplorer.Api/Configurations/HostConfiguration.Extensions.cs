@@ -10,9 +10,13 @@ public static partial class HostConfiguration
 {
     #region Builder configurations
 
-    public static WebApplicationBuilder AddMapping(this WebApplicationBuilder builder)
+    private static WebApplicationBuilder AddMapping(this WebApplicationBuilder builder)
     {
-        var assemblies = Assembly.GetExecutingAssembly().GetReferencedAssemblies().Select(Assembly.Load).ToList();
+        var assemblies = Assembly
+            .GetExecutingAssembly()
+            .GetReferencedAssemblies()
+            .Select(Assembly.Load).ToList();
+
         assemblies.Add(Assembly.GetExecutingAssembly());
 
         builder.Services.AddAutoMapper(assemblies);
@@ -20,7 +24,7 @@ public static partial class HostConfiguration
         return builder;
     }
 
-    public static WebApplicationBuilder AddBrokers(this WebApplicationBuilder builder)
+    private static WebApplicationBuilder AddBrokers(this WebApplicationBuilder builder)
     {
         builder
             .Services
@@ -31,7 +35,7 @@ public static partial class HostConfiguration
         return builder;
     }
 
-    public static WebApplicationBuilder AddFileStorageServices(this WebApplicationBuilder builder)
+    private static WebApplicationBuilder AddFileStorageServices(this WebApplicationBuilder builder)
     {
         builder
             .Services
@@ -39,25 +43,30 @@ public static partial class HostConfiguration
             .AddSingleton<IDirectoryService, DirectoryService>()
             .AddSingleton<IFileService, FileService>();
 
+        builder
+            .Services
+            .AddSingleton<IDriveProcessingService, DriveProcessingService>()
+            .AddSingleton<IDirectoryProcessingService, DirectoryProcessingService>();
+
         return builder;
     }
 
-    public static WebApplicationBuilder AddDevTools(this WebApplicationBuilder builder)
+    private static WebApplicationBuilder AddDevTools(this WebApplicationBuilder builder)
     {
         builder.Services.AddSwaggerGen().AddEndpointsApiExplorer();
 
         return builder;
     }
 
-    public static WebApplicationBuilder AddRestExposers(this WebApplicationBuilder builder)
+    private static WebApplicationBuilder AddRestExposers(this WebApplicationBuilder builder)
     {
-        builder.Services.AddControllers();
+        builder.Services.AddControllers().AddNewtonsoftJson();
         builder.Services.AddRouting(options => options.LowercaseUrls = true);
 
         return builder;
     }
 
-    public static WebApplicationBuilder AddCustomCors(this WebApplicationBuilder builder)
+    private static WebApplicationBuilder AddCustomCors(this WebApplicationBuilder builder)
     {
         builder.Services.AddCors(options =>
         {
@@ -71,23 +80,30 @@ public static partial class HostConfiguration
 
     #region Application configurations
 
-    public static WebApplication UseDevTools(this WebApplication app)
+    private static WebApplication UseDevTools(this WebApplication app)
     {
         app.UseSwagger().UseSwaggerUI();
 
         return app;
     }
 
-    public static WebApplication UseCustomCors(this WebApplication app)
+    private static WebApplication UseCustomCors(this WebApplication app)
     {
         app.UseCors("CorsPolicy");
 
         return app;
     }
 
-    public static WebApplication MapRoutes(this WebApplication app)
+    private static WebApplication MapRoutes(this WebApplication app)
     {
         app.MapControllers();
+
+        return app;
+    }
+
+    private static WebApplication UseFileStorage(this WebApplication app)
+    {
+        app.UseStaticFiles();
 
         return app;
     }

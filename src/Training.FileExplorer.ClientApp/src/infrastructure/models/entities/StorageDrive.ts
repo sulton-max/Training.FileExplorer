@@ -1,8 +1,7 @@
 import { StorageItemType } from "@/infrastructure/models/entities/StorageItemType";
-import type { IStorageItem } from "@/infrastructure/models/entities/iIExplorerItem";
-import type { IMappable } from "@/infrastructure/models/entities/iMappable";
+import type { IStorageEntry } from "@/infrastructure/models/entities/IStorageEntry";
 
-export class StorageDrive implements IStorageItem {
+export class StorageDrive implements IStorageEntry {
     name!: string;
     label!: string;
     format!: string;

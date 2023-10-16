@@ -1,5 +1,6 @@
-﻿using Training.FileExplorer.Application.FileStorage.Brokers;
-using Training.FileExplorer.Application.FileStorage.Models;
+﻿using Training.FileExplorer.Application.Common.Models.Filtering;
+using Training.FileExplorer.Application.Common.Querying.Extensions;
+using Training.FileExplorer.Application.FileStorage.Brokers;
 using Training.FileExplorer.Application.FileStorage.Models.Storage;
 using Training.FileExplorer.Application.FileStorage.Services;
 
@@ -16,7 +17,7 @@ public class FileService : IFileService
         _directoryBroker = directoryBroker;
     }
 
-    public ValueTask<IList<StorageFile>> GetFiles(string directoryPath)
+    public async ValueTask<IList<StorageFile>> GetFiles(string directoryPath, FilterPagination paginationOptions)
     {
         if (string.IsNullOrWhiteSpace(directoryPath))
             throw new ArgumentNullException(nameof(directoryPath));
@@ -24,8 +25,12 @@ public class FileService : IFileService
         if (!_directoryBroker.ExistsAsync(directoryPath))
             throw new ArgumentException("Directory does not exist.", nameof(directoryPath));
 
-        var files = _directoryBroker.GetFilesPath(directoryPath).Select(filePath => _fileBroker.GetByPath(filePath));
+        var files = await Task.Run(() =>
+            _directoryBroker
+                .GetFilesPath(directoryPath)
+                .ApplyPagination(paginationOptions)
+                .Select(filePath => _fileBroker.GetByPath(filePath)));
 
-        return new ValueTask<IList<StorageFile>>(files.ToList());
+        return files.ToList();
     }
 }

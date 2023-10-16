@@ -9,7 +9,7 @@ public static partial class HostConfiguration
         return new ValueTask<WebApplicationBuilder>(builder);
     }
 
-    public static ValueTask<WebApplication> AddBrokers(this WebApplication app)
+    public static ValueTask<WebApplication> ConfigureAsync(this WebApplication app)
     {
         app.UseDevTools();
         app.UseCustomCors();

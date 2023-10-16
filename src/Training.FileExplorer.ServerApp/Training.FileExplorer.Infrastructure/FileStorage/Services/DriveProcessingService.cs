@@ -1,6 +1,4 @@
-﻿using Training.FileExplorer.Application.Common.Models.Filtering;
-using Training.FileExplorer.Application.FileStorage.Models;
-using Training.FileExplorer.Application.FileStorage.Models.Filtering;
+﻿using Training.FileExplorer.Application.FileStorage.Models.Filtering;
 using Training.FileExplorer.Application.FileStorage.Models.Storage;
 using Training.FileExplorer.Application.FileStorage.Services;
 
@@ -19,12 +17,15 @@ public class DriveProcessingService : IDriveProcessingService
         _directoryService = directoryService;
     }
 
-    public async ValueTask<List<IStorageItem>> GetDriveEntriesAsync(StorageDriveEntryFilterModel filterModel)
+    public async ValueTask<List<IStorageEntry>> GetEntriesAsync(string drivePath, StorageDriveEntryFilterModel filterModel)
     {
-        var storageItems = new List<IStorageItem>();
+        var storageItems = new List<IStorageEntry>();
 
-        storageItems.AddRange(await _directoryService.GetSubDirectoriesAsync(filterModel.DriveLabel));
-        storageItems.AddRange(await _fileService.GetFiles(filterModel.DriveLabel));
+        if (filterModel.IncludeDirectories)
+            storageItems.AddRange(await _directoryService.GetSubDirectoriesAsync(drivePath, filterModel));
+
+        if (filterModel.IncludeFiles)
+            storageItems.AddRange(await _fileService.GetFiles(drivePath, filterModel));
 
         return storageItems;
     }

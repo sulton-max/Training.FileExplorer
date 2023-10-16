@@ -1,5 +1,6 @@
 import ApiClientBase from "@/infrastructure/api/AxiosClient";
 import { DriveEndpointsClient } from "@/infrastructure/apiClients/DriveEndpointsClient";
+import { DirectoryEndpointClient } from "@/infrastructure/apiClients/DirectoryEndpointsClient";
 
 export class ExplorerApiClient {
     private readonly client: ApiClientBase;
@@ -10,7 +11,10 @@ export class ExplorerApiClient {
         });
 
         this.drives = new DriveEndpointsClient(this.client);
+        this.directories = new DirectoryEndpointClient(this.client);
     }
 
     public drives: DriveEndpointsClient;
+
+    public directories: DirectoryEndpointClient;
 }

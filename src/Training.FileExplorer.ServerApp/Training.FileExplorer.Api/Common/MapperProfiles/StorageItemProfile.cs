@@ -9,7 +9,7 @@ public class StorageItemProfile : Profile
 {
     public StorageItemProfile()
     {
-        CreateMap<IStorageItem, IStorageItemDto>();
-        CreateMap<IStorageItemDto, IStorageItem>();
+        CreateMap<IStorageEntry, IStorageItemDto>();
+        CreateMap<IStorageItemDto, IStorageEntry>();
     }
 }

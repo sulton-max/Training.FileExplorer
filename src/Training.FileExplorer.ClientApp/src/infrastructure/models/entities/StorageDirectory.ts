@@ -1,7 +1,7 @@
-import type { IStorageItem } from "@/infrastructure/models/entities/iIExplorerItem";
+import type { IStorageEntry } from "@/infrastructure/models/entities/IStorageEntry";
 import { StorageItemType } from "@/infrastructure/models/entities/StorageItemType";
 
-export class StorageDirectory implements IStorageItem {
+export class StorageDirectory implements IStorageEntry {
     public name!: string;
     public path!: string;
     public itemsCount!: number;

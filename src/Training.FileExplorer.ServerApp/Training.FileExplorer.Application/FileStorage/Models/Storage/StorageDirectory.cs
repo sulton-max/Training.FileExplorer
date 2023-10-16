@@ -1,6 +1,6 @@
 ﻿namespace Training.FileExplorer.Application.FileStorage.Models.Storage;
 
-public class StorageDirectory : IStorageItem
+public class StorageDirectory : IStorageEntry
 {
     public string Name { get; set; } = string.Empty;
 

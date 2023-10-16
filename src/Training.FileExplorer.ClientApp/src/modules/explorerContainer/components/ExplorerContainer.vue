@@ -8,7 +8,6 @@
 
     <!-- Explorer Items section -->
     <explorer-grid class="basis-2/3"/>
-    how
   </div>
 
 </template>

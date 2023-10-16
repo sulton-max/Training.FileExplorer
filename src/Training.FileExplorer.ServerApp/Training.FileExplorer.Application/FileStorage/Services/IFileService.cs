@@ -1,9 +1,10 @@
-﻿using Training.FileExplorer.Application.FileStorage.Models;
+﻿using Training.FileExplorer.Application.Common.Models.Filtering;
+using Training.FileExplorer.Application.FileStorage.Models;
 using Training.FileExplorer.Application.FileStorage.Models.Storage;
 
 namespace Training.FileExplorer.Application.FileStorage.Services;
 
 public interface IFileService
 {
-    ValueTask<IList<StorageFile>> GetFiles(string directoryPath);
+    ValueTask<IList<StorageFile>> GetFiles(string directoryPath, FilterPagination paginationOptions);
 }
