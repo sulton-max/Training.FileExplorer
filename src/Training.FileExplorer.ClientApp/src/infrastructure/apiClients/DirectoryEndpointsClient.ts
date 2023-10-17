@@ -13,7 +13,7 @@ export class DirectoryEndpointClient {
     public async getRootEntriesAsync(filterModel: StorageDriveEntryFilterModel) {
         const queryString = filterModel.convertToQueryParams();
 
-        return await this.client.getAsync<Array<IStorageEntry>>(`directories?${queryString}`);
+        return await this.client.getAsync<Array<IStorageEntry>>(`directories/root/entries?${queryString}`);
     }
 
     public async getEntriesAsync(drivePath: string, paginationOptions: FilterPagination) {

@@ -6,4 +6,16 @@
     .grid-icon {
         @apply w-20 h-20;
     }
+
+    .container-shadow {
+        @apply bg-blue-800 bg-clip-padding backdrop-filter backdrop-blur-xl bg-opacity-10;
+    }
+
+    .section-shadow {
+        @apply bg-black bg-opacity-20 hover:bg-opacity-25 bg-clip-padding backdrop-filter backdrop-blur-xl;
+    }
+
+    .card-shadow {
+        @apply bg-black bg-opacity-10 hover:bg-opacity-25 bg-clip-padding backdrop-filter backdrop-blur-xl  rounded-xl transition duration-150;
+    }
 }

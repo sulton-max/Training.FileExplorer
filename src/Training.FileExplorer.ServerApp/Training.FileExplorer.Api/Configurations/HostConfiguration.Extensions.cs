@@ -12,10 +12,7 @@ public static partial class HostConfiguration
 
     private static WebApplicationBuilder AddMapping(this WebApplicationBuilder builder)
     {
-        var assemblies = Assembly
-            .GetExecutingAssembly()
-            .GetReferencedAssemblies()
-            .Select(Assembly.Load).ToList();
+        var assemblies = Assembly.GetExecutingAssembly().GetReferencedAssemblies().Select(Assembly.Load).ToList();
 
         assemblies.Add(Assembly.GetExecutingAssembly());
 
@@ -35,7 +32,7 @@ public static partial class HostConfiguration
         return builder;
     }
 
-    private static WebApplicationBuilder AddFileStorageServices(this WebApplicationBuilder builder)
+    private static WebApplicationBuilder AddFileStorageInfrastructure(this WebApplicationBuilder builder)
     {
         builder
             .Services

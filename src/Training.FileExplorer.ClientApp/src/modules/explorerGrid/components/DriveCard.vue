@@ -1,6 +1,6 @@
 <template>
 
-  <grid-item-card @click="emit('onFetchDriveEntries', drive.path)">
+  <div class="card-shadow" @click="emit('onFetchDriveEntries', drive.path)">
 
     <div class="p-2 px-4 flex flex-col items-center justify-center">
 
@@ -27,13 +27,12 @@
 
     </div>
 
-  </grid-item-card>
+  </div>
 
 </template>
 
 <script lang="ts" setup>
 
-import GridItemCard from "@/components/GridItemCard.vue";
 import { Chart, ChartItem, DoughnutController, ArcElement } from "chart.js";
 import { onMounted, ref } from "vue";
 import type { StorageDrive } from "@/infrastructure/models/entities/StorageDrive";

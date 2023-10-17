@@ -1,4 +1,5 @@
-﻿using AutoMapper;
+﻿using System.Runtime.InteropServices;
+using AutoMapper;
 using Training.FileExplorer.Application.Common.Models.Filtering;
 using Training.FileExplorer.Application.Common.Querying.Extensions;
 using Training.FileExplorer.Application.FileStorage.Brokers;
@@ -11,9 +12,6 @@ public class DirectoryService : IDirectoryService
 {
     private readonly IDirectoryBroker _broker;
     private readonly IMapper _mapper;
-
-    // FakeDirectoryBroker - test
-    // DirectoryBroker - production, development
 
     public DirectoryService(IDirectoryBroker broker, IMapper mapper)
     {

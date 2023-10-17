@@ -1,6 +1,6 @@
 <template>
 
-    <grid-item-card @click="emit('onPreviewFile', file.path)" class="p-2 min-w-[200px]">
+    <div @click="emit('onPreviewFile', file.path)" class="p-2 min-w-[200px] card-shadow">
 
         <div class="flex">
 
@@ -13,13 +13,12 @@
             </div>
         </div>
 
-    </grid-item-card>
+    </div>
 
 </template>
 
 <script lang="ts" setup>
 
-import GridItemCard from "@/components/GridItemCard.vue";
 import type { StorageFile } from "@/infrastructure/models/entities/StorageFile";
 
 const emit = defineEmits<{

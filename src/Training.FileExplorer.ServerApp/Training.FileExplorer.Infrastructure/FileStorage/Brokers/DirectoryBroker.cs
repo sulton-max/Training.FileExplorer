@@ -32,7 +32,6 @@ public class DirectoryBroker : IDirectoryBroker
         var directoryInfo = new DirectoryInfo(directoryPath);
         var directorySecurity = directoryInfo.GetAccessControl();
 
-        //
         // var test = directorySecurity.AreAccessRulesProtected;
         //
         // directorySecurity.AddAccessRule(new FileSystemAccessRule(System.Security.Principal.WindowsIdentity.GetCurrent().Name,

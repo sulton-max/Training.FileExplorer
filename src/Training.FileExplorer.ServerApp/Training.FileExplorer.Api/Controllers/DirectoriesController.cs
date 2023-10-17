@@ -22,8 +22,8 @@ public class DirectoriesController : ControllerBase
         _mapper = mapper;
     }
 
-    [HttpGet]
-    public async ValueTask<IActionResult> GetRootAsync(
+    [HttpGet("root/entries")]
+    public async ValueTask<IActionResult> GetRootEntriesAsync(
         [FromQuery] StorageDriveEntryFilterModel filterModel,
         [FromServices] IWebHostEnvironment environment
     )

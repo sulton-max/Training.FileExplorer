@@ -15,7 +15,7 @@ public class DrivesController : ControllerBase
     private readonly IDriveService _driveService;
     private readonly IDriveProcessingService _driveProcessingService;
 
-    public DrivesController(IMapper mapper, IDriveService driveService, IDriveProcessingService driveProcessingService)
+    public DrivesController(IMapper mapper, IDriveService driveService, IDriveProcessingService driveProcessingService, IWebHostEnvironment webHostEnvironment)
     {
         _mapper = mapper;
         _driveService = driveService;
