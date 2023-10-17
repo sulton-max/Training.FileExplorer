@@ -12,10 +12,22 @@
     }
 
     .section-shadow {
-        @apply bg-black bg-opacity-20 hover:bg-opacity-25 bg-clip-padding backdrop-filter backdrop-blur-xl;
+        @apply bg-black bg-opacity-20 bg-clip-padding backdrop-filter backdrop-blur-xl;
     }
 
-    .card-shadow {
-        @apply bg-black bg-opacity-10 hover:bg-opacity-25 bg-clip-padding backdrop-filter backdrop-blur-xl  rounded-xl transition duration-150;
+    .transparent-shadow-on {
+        @apply bg-black bg-opacity-10 hover:bg-opacity-25 bg-clip-padding backdrop-filter backdrop-blur-xl transition duration-150;
+    }
+
+    .transparent-shadow-off {
+        @apply bg-black bg-opacity-0 backdrop-filter bg-clip-padding transition duration-150 hover:bg-opacity-25 hover:backdrop-blur-xl;
+    }
+
+    .divider-shadow {
+        @apply bg-blue-500 bg-opacity-20 bg-clip-padding backdrop-filter backdrop-blur-xl;
+    }
+
+    .card-round {
+        @apply rounded-xl;
     }
 }

@@ -1,7 +1,7 @@
 <template>
 
     <div
-        class="w-3/5 h-4/5 overflow-hidden rounded-3xl container-shadow border border-slate-700">
+        class="w-3/5 h-4/5 overflow-hidden rounded-xl container-shadow border border-slate-700">
 
         <div v-if="isLoading">
             <p>loading ...</p>
@@ -11,8 +11,11 @@
             <explorer-actions class="basis-1/3 section-shadow"/>
 
             <div class="basis-2/3">
+
                 <!-- Grid actions section -->
                 <explorer-grid-actions/>
+
+                <horizontal-divider/>
 
                 <!-- Explorer Items section -->
                 <explorer-grid :grid-items="gridItems"/>
@@ -31,6 +34,7 @@ import { ExplorerApiClient } from "@/infrastructure/apiClients/ExplorerApiClient
 import { onBeforeMount, ref } from "vue";
 import { StorageDriveEntryFilterModel } from "@/infrastructure/models/filtering/StorageDriveEntryFilterModel";
 import type { IStorageEntry } from "@/infrastructure/models/entities/IStorageEntry";
+import HorizontalDivider from "@/common/components/HorizontalDivider.vue";
 
 const explorerApiClient = new ExplorerApiClient();
 

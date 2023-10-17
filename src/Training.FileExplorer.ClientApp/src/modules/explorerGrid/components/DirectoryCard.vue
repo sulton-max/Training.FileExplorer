@@ -1,6 +1,6 @@
 <template>
 
-    <div @click="emit('onOpenDirectory', directory.path)" class="p-2 min-w-[200px] card-shadow">
+    <div @click="emit('onOpenDirectory', directory.path)" class="p-2 min-w-[200px] transparent-shadow-on card-round">
 
         <div class="flex">
 

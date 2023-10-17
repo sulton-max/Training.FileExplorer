@@ -1,6 +1,6 @@
 <template>
 
-  <div class="card-shadow" @click="emit('onFetchDriveEntries', drive.path)">
+  <div class="transparent-shadow-on card-round" @click="emit('onFetchDriveEntries', drive.path)">
 
     <div class="p-2 px-4 flex flex-col items-center justify-center">
 
