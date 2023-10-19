@@ -1,6 +1,6 @@
-import type { StorageItemType } from "@/infrastructure/models/entities/StorageItemType";
+import type { StorageEntryType } from "@/infrastructure/models/entities/StorageItemType";
 
 export interface IStorageEntry {
     path: string;
-    itemType: StorageItemType;
+    entryType: StorageEntryType;
 }

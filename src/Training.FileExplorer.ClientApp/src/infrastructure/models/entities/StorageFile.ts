@@ -1,5 +1,5 @@
 import { IStorageEntry } from "@/infrastructure/models/entities/IStorageEntry";
-import type { StorageItemType } from "@/infrastructure/models/entities/StorageItemType";
+import type { StorageEntryType } from "@/infrastructure/models/entities/StorageItemType";
 
 export class StorageFile implements IStorageEntry {
      name!: string;
@@ -7,5 +7,5 @@ export class StorageFile implements IStorageEntry {
      directoryPath!: string;
      size!: number;
      extension!: string;
-     itemType!: StorageItemType;
+     entryType!: StorageEntryType;
 }

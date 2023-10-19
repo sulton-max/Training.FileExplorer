@@ -1,4 +1,4 @@
-export enum StorageItemType {
+export enum StorageEntryType {
     Drive,
     Directory,
     File

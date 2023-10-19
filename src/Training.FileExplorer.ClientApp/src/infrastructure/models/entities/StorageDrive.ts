@@ -1,4 +1,4 @@
-import { StorageItemType } from "@/infrastructure/models/entities/StorageItemType";
+import { StorageEntryType } from "@/infrastructure/models/entities/StorageItemType";
 import type { IStorageEntry } from "@/infrastructure/models/entities/IStorageEntry";
 
 export class StorageDrive implements IStorageEntry {
@@ -10,6 +10,6 @@ export class StorageDrive implements IStorageEntry {
     freeSpace!: number;
     unavailableSpace!: number;
     usedSpace!: number;
-    itemType!: StorageItemType;
+    entryType!: StorageEntryType;
     path!: string;
 }

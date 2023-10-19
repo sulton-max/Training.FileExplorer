@@ -2,6 +2,6 @@
 
 public enum StorageEntryType
 {
-    Directory,
-    File
+    Directory = 1,
+    File = 2
 }

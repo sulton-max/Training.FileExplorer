@@ -9,15 +9,15 @@
                 <!-- Grid Items -->
                 <div v-for="item in gridItems" :key="item.path">
 
-                    <div v-if="item.itemType === StorageItemType.Drive">
+                    <div v-if="item.entryType === StorageEntryType.Drive">
                         <drive-card :drive="item as StorageDrive"></drive-card>
                     </div>
 
-                    <div v-else-if="item.itemType === StorageItemType.Directory">
+                    <div v-else-if="item.entryType === StorageEntryType.Directory">
                         <directory-card :directory="item as StorageDirectory" @onOpenDirectory="handleOpenDirectory"></directory-card>
                     </div>
 
-                    <div v-else-if="item.itemType === StorageItemType.File">
+                    <div v-else-if="item.entryType === StorageEntryType.File">
                         <file-card :file="item as StorageFile"></file-card>
                     </div>
 
@@ -36,7 +36,7 @@ import DriveCard from "@/modules/explorerGrid/components/DriveCard.vue";
 import FileCard from "@/modules/explorerGrid/components/FileCard.vue";
 import DirectoryCard from "@/modules/explorerGrid/components/DirectoryCard.vue";
 import type { IStorageEntry } from "@/infrastructure/models/entities/IStorageEntry";
-import { StorageItemType } from "@/infrastructure/models/entities/StorageItemType";
+import { StorageEntryType } from "@/infrastructure/models/entities/StorageItemType";
 import type { StorageDrive } from "@/infrastructure/models/entities/StorageDrive";
 import { StorageDirectory } from "@/infrastructure/models/entities/StorageDirectory";
 import type { StorageFile } from "@/infrastructure/models/entities/StorageFile";

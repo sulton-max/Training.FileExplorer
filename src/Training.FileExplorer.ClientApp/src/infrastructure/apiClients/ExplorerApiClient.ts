@@ -7,7 +7,7 @@ export class ExplorerApiClient {
 
     constructor() {
         this.client = new ApiClientBase({
-            baseURL: "https://localhost:7195/api/"
+            baseURL: "https://localhost:7124/api"
         });
 
         this.drives = new DriveEndpointsClient(this.client);
