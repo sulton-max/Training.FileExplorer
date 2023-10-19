@@ -4,8 +4,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddEndpointsApiExplorer();
 
 builder.Services.AddRouting(options => options.LowercaseUrls = true);
-builder.Services.AddControllers();
-
+builder.Services.AddControllers().AddNewtonsoftJson();
 
 var app = builder.Build();
 

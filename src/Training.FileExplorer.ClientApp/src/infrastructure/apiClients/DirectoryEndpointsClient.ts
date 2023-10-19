@@ -20,6 +20,6 @@ export class DirectoryEndpointClient {
         const encodedDrivePath = encodeURIComponent(drivePath);
         const queryString = paginationOptions.convertToQueryParams();
 
-        return await this.client.getAsync<Array<IStorageEntry>>(`drives/${encodedDrivePath}/entries?${queryString}`);
+        return await this.client.getAsync<Array<IStorageEntry>>(`directories/${encodedDrivePath}/entries?${queryString}`);
     }
 }

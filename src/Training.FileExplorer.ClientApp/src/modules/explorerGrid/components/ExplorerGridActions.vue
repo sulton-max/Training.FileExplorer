@@ -10,6 +10,21 @@
 
         </div>
 
+        <!-- Back and Forth buttons -->
+        <div class="flex gap-4">
+
+            <button :disabled="!explorerStore.currentPath"
+                    class="text-slate-300 p-2 px-4 bg-blue-700 rounded-lg hover:bg-blue-800 transition duration-200 disabled:bg-blue-900"
+                    @click="handleBackAction">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+
+            <!--            <button class="text-slate-300 p-2 px-4 bg-blue-700 rounded-lg hover:bg-blue-800 transition duration-200" @click="handleForwardAction">-->
+            <!--                <i class="fas fa-chevron-right"></i>-->
+            <!--            </button>-->
+
+        </div>
+
         <!-- Secondary actions -->
         <div class="flex gap-5">
 
@@ -17,7 +32,8 @@
             <div class="flex relative">
                 <i class="fas fa-search text-slate-200 absolute top-1/2 left-[5%] transform -translate-y-1/2 "></i>
                 <input type="text"
-                       class="border h-[40px] border-blue-500 rounded-xl p-2 px-4 pl-10 transparent-shadow-on bg-transparent outline-none focus:border-blue-400 text-slate-200 " placeholder="Search">
+                       class="border h-[40px] border-blue-500 rounded-xl p-2 px-4 pl-10 transparent-shadow-on bg-transparent outline-none focus:border-blue-400 text-slate-200 "
+                       placeholder="Search">
             </div>
 
             <!-- Extra actions -->
@@ -39,9 +55,25 @@
 <script setup lang="ts">
 
 import { useExplorerStore } from "@/common/stores/ExplorerStore";
-import { computed, onMounted } from "vue";
+import { onMounted } from "vue";
 
 const explorerStore = useExplorerStore();
+
+const handleBackAction = () => {
+    if (explorerStore.currentPath) {
+        const pathSegments = explorerStore.currentPath?.split('\\');
+        const parentPath = pathSegments.slice(0, -1).join('\\');
+
+        console.log(parentPath);
+
+        explorerStore.setCurrentPath(parentPath);
+    }
+};
+
+const handleForwardAction = () => {
+    console.log('handle forward action');
+};
+
 
 onMounted(() => {
     // console.log('getting breadcrumbs');

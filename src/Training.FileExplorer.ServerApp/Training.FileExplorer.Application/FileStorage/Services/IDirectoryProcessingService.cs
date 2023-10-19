@@ -5,5 +5,5 @@ namespace Training.FileExplorer.Application.FileStorage.Services;
 
 public interface IDirectoryProcessingService
 {
-    ValueTask<List<IStorageEntry>> GetEntriesAsync(string directoryPath, StorageDriveEntryFilterModel filterModel);
+    ValueTask<List<IStorageEntry>> GetEntriesAsync(string directoryPath, StorageDirectoryEntryFilterModel filterModel);
 }

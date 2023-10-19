@@ -15,7 +15,7 @@ public class DirectoryProcessingService : IDirectoryProcessingService
         _directoryService = directoryService;
     }
 
-    public async ValueTask<List<IStorageEntry>> GetEntriesAsync(string directoryPath, StorageDriveEntryFilterModel filterModel)
+    public async ValueTask<List<IStorageEntry>> GetEntriesAsync(string directoryPath, StorageDirectoryEntryFilterModel filterModel)
     {
         var storageItems = new List<IStorageEntry>();
 
