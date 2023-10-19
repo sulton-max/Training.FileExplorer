@@ -1,14 +1,15 @@
 <template>
 
-  <div class="relative h-full w-full flex items-center justify-center">
+    <div class="relative h-full w-full flex items-center justify-center">
 
-    <!-- Main background -->
-    <img class="absolute top-0 left-0 z-0 h-screen object-cover w-full" src="../../../assets/images/background-second.jpg" alt="Background image">
+        <!-- Desktop screen background -->
+        <img class="absolute top-0 left-0 z-0 h-screen object-cover w-full"
+             src="../../../assets/images/desktop-background.jpg" alt="Windows 11 desktop screen background image">
 
-    <!-- Explorer view and grid -->
-    <explorer-container class="z-20 pos"/>
+        <!-- Explorer view and grid -->
+        <explorer-container class="z-20 pos"/>
 
-  </div>
+    </div>
 
 </template>
 

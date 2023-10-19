@@ -111,6 +111,5 @@
 
 <script setup lang="ts">
 
-import ActionsDivider from "@/common/components/HorizontalDivider.vue";
 import HorizontalDivider from "@/common/components/HorizontalDivider.vue";
 </script>

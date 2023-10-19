@@ -5,9 +5,5 @@ namespace Training.FileExplorer.Application.FileStorage.Brokers;
 
 public interface IFileBroker
 {
-    // IEnumerable<string> GetFilesPath(string directoryPath);
-
     StorageFile GetByPath(string filePath);
-
-    // bool ExistsAsync(string filePath);
 }

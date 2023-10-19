@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import HomeView from "@/common/views/HomeView.vue";
 import ExplorerView from "@/modules/explorerContainer/views/ExplorerView.vue";
+import LockView from "@/common/views/LockView.vue";
 
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
@@ -8,7 +8,7 @@ const router = createRouter({
         {
             path: '/',
             name: 'home',
-            component: HomeView
+            component: LockView
         },
         {
             path: '/explorer',

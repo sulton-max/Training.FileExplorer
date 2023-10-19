@@ -42,7 +42,7 @@ public static partial class HostConfiguration
 
         builder
             .Services
-            .AddSingleton<IDriveProcessingService, DriveProcessingService>()
+            // .AddSingleton<IDriveProcessingService, DriveProcessingService>()
             .AddSingleton<IDirectoryProcessingService, DirectoryProcessingService>();
 
         return builder;

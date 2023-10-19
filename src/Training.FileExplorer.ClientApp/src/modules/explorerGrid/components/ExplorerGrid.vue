@@ -14,7 +14,7 @@
                     </div>
 
                     <div v-else-if="item.itemType === StorageItemType.Directory">
-                        <directory-card :directory="item as StorageDirectory"></directory-card>
+                        <directory-card :directory="item as StorageDirectory" @onOpenDirectory="handleOpenDirectory"></directory-card>
                     </div>
 
                     <div v-else-if="item.itemType === StorageItemType.File">
@@ -40,6 +40,9 @@ import { StorageItemType } from "@/infrastructure/models/entities/StorageItemTyp
 import type { StorageDrive } from "@/infrastructure/models/entities/StorageDrive";
 import { StorageDirectory } from "@/infrastructure/models/entities/StorageDirectory";
 import type { StorageFile } from "@/infrastructure/models/entities/StorageFile";
+import { ExplorerLocationService } from "@/infrastructure/services/explorerLocationService";
+
+const explorerService = new ExplorerLocationService();
 
 const props = defineProps({
     gridItems: {
@@ -47,5 +50,9 @@ const props = defineProps({
         required: true
     }
 });
+
+const handleOpenDirectory = (directoryPath: string) => {
+    explorerService.setCurrentPath(directoryPath);
+}
 
 </script>

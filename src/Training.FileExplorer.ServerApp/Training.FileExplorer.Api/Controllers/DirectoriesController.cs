@@ -2,7 +2,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Training.FileExplorer.Api.Models.Dtos;
 using Training.FileExplorer.Application.FileStorage.Models.Filtering;
-using Training.FileExplorer.Application.FileStorage.Models.Storage;
 using Training.FileExplorer.Application.FileStorage.Services;
 
 namespace Training.FileExplorer.Api.Controllers;

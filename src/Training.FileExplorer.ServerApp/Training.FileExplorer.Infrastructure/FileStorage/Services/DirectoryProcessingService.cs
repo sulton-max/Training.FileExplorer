@@ -19,11 +19,13 @@ public class DirectoryProcessingService : IDirectoryProcessingService
     {
         var storageItems = new List<IStorageEntry>();
 
+        // filterModel.SetDynamicPagination(2);
+
         if (filterModel.IncludeDirectories)
-            storageItems.AddRange(await _directoryService.GetSubDirectoriesAsync(directoryPath, filterModel));
+            storageItems.AddRange(await _directoryService.GetDirectoriesAsync(directoryPath, filterModel));
 
         if (filterModel.IncludeFiles)
-            storageItems.AddRange(await _fileService.GetFiles(directoryPath, filterModel));
+            storageItems.AddRange(await _fileService.GetFilesByPathAsync(_directoryService.GetFilesPath(directoryPath, filterModel)));
 
         return storageItems;
     }
