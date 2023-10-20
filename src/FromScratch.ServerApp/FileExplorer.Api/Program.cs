@@ -1,7 +1,23 @@
+using System.Reflection;
+using FileExplorer.Application.FileStorage.Brokers;
+using FileExplorer.Infrastructure.FileStorage.Brokers;
+
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddSwaggerGen();
 builder.Services.AddEndpointsApiExplorer();
+
+// Assembly.GetExecutingAssembly().GetTypes().
+var assemblies = Assembly
+    .GetExecutingAssembly() // hozirgi run qilingan assemblyni olish
+    .GetReferencedAssemblies() // bu shu projectga reference qilingan assemblylarni olish
+    .Select(Assembly.Load)
+    .ToList();
+
+assemblies.Add(Assembly.GetExecutingAssembly());
+builder.Services.AddAutoMapper(assemblies);
+
+builder.Services.AddSingleton<IDriveBroker, DriveBroker>();
 
 builder.Services.AddCors(options =>
 {

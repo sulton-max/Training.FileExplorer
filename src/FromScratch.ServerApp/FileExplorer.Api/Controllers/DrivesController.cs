@@ -1,4 +1,5 @@
-﻿using FileExplorer.Application.FileStorage.Models;
+﻿using FileExplorer.Application.FileStorage.Brokers;
+using FileExplorer.Application.FileStorage.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FileExplorer.Api.Controllers;
@@ -8,22 +9,9 @@ namespace FileExplorer.Api.Controllers;
 public class DrivesController : ControllerBase
 {
     [HttpGet]
-    public ValueTask<IActionResult> GetAsync()
+    public ValueTask<IActionResult> GetAsync([FromServices]IDriveBroker driveBroker)
     {
-        var drivesInfo = DriveInfo.GetDrives();
-
-        var drive = drivesInfo.Select(driveInfo => new StorageDrive
-        {
-            Name = driveInfo.Name.Substring(0, driveInfo.Name.IndexOf(':')),
-            Path = driveInfo.Name,
-            Format = driveInfo.DriveFormat,
-            Type = driveInfo.DriveType.ToString(),
-            TotalSpace = driveInfo.TotalSize,
-            FreeSpace = driveInfo.AvailableFreeSpace,
-            UnavailableSpace = driveInfo.TotalFreeSpace - driveInfo.AvailableFreeSpace,
-            UsedSpace = driveInfo.TotalSize - driveInfo.TotalFreeSpace
-        });
-
-        return new ValueTask<IActionResult>(Ok(drive));
+        var result = driveBroker.Get();
+        return new ValueTask<IActionResult>(Ok(result));
     }
 }

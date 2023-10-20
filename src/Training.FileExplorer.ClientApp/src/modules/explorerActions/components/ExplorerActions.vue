@@ -78,29 +78,9 @@
         <!-- My computer statistics -->
         <div class="p-3">
 
-            <div class="p-2 flex text-slate-300 items-center justify-start gap-2">
-                <img src="../../../assets/icons/document.svg" alt="Document icon" class="w-6 h-6">
-                <h5 class="font-normal">
-                    System (C) <span class="text-slate-400">500 GB</span>
-                </h5>
-            </div>
-
-            <horizontal-divider class="m-1 w-[90%] place-self-center"/>
-
-            <div class="p-2 flex text-slate-300 items-center justify-start gap-2">
-                <img src="../../../assets/icons/document.svg" alt="Document icon" class="w-6 h-6">
-                <h5 class="font-normal">
-                    System (C) <span class="text-slate-400">500 GB</span>
-                </h5>
-            </div>
-
-            <horizontal-divider class="m-1 w-[90%] self-center"/>
-
-            <div class="p-2 flex text-slate-300 items-center justify-start gap-2">
-                <img src="../../../assets/icons/document.svg" alt="Document icon" class="w-6 h-6">
-                <h5 class="font-normal">
-                    System (C) <span class="text-slate-400">500 GB</span>
-                </h5>
+            <div v-for="drive in drives" :key="drive.path">
+                <drive-card-compact :drive="drive"></drive-card-compact>
+                <horizontal-divider class="m-1 w-[90%] place-self-center"/>
             </div>
 
         </div>
@@ -112,4 +92,25 @@
 <script setup lang="ts">
 
 import HorizontalDivider from "@/common/components/HorizontalDivider.vue";
+import DriveCardCompact from "@/modules/explorerActions/components/DriveCardCompact.vue";
+import type { StorageDrive } from "@/infrastructure/models/entities/StorageDrive";
+import { onMounted, ref } from "vue";
+import { ExplorerApiClient } from "@/infrastructure/apiClients/ExplorerApiClient";
+
+const explorerApiClient = new ExplorerApiClient();
+const drives = ref<StorageDrive[]>([]);
+
+onMounted(async () => {
+    await loadDrivesAsync();
+});
+
+const  loadDrivesAsync = async () => {
+    const drivesResponse = await explorerApiClient.drives.getDrivesAsync();
+    if (drivesResponse.response) {
+        drives.value = drivesResponse.response;
+    }
+}
+
+
+
 </script>
