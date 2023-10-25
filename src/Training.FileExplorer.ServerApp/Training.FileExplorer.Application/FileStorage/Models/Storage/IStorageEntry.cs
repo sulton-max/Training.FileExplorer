@@ -4,5 +4,5 @@ public interface IStorageEntry
 {
     string Path { get; set; }
 
-    StorageItemType ItemType { get; set; }
+    StorageEntryType EntryType { get; set; }
 }

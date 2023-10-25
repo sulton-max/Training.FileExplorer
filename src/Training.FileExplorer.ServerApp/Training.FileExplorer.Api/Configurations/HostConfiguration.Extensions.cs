@@ -1,5 +1,6 @@
 ﻿using System.Reflection;
 using Training.FileExplorer.Application.FileStorage.Brokers;
+using Training.FileExplorer.Application.FileStorage.Models.Settings;
 using Training.FileExplorer.Application.FileStorage.Services;
 using Training.FileExplorer.Infrastructure.FileStorage.Brokers;
 using Training.FileExplorer.Infrastructure.FileStorage.Services;
@@ -34,6 +35,9 @@ public static partial class HostConfiguration
 
     private static WebApplicationBuilder AddFileStorageInfrastructure(this WebApplicationBuilder builder)
     {
+        builder.Services.Configure<FileFilterSettings>(builder.Configuration.GetSection(nameof(FileFilterSettings)));
+        builder.Services.Configure<FileStorageSettings>(builder.Configuration.GetSection(nameof(FileStorageSettings)));
+
         builder
             .Services
             .AddSingleton<IDriveService, DriveService>()
@@ -42,8 +46,8 @@ public static partial class HostConfiguration
 
         builder
             .Services
-            // .AddSingleton<IDriveProcessingService, DriveProcessingService>()
-            .AddSingleton<IDirectoryProcessingService, DirectoryProcessingService>();
+            .AddSingleton<IDirectoryProcessingService, DirectoryProcessingService>()
+            .AddSingleton<IFileProcessingService, FileProcessingService>();
 
         return builder;
     }

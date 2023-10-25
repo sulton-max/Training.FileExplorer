@@ -55,7 +55,6 @@ watch(currentPath, async () => {
 });
 
 const loadGridItemsAsync = async () => {
-    console.log('test');
     isLoading.value = true;
 
     const filterModel = new StorageDriveEntryFilterModel(20, 1, true, true);

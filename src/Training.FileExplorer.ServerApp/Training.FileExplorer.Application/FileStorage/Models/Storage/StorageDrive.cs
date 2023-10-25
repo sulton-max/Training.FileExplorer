@@ -20,5 +20,5 @@ public class StorageDrive : IStorageEntry
 
     public long UsedSpace { get; set; }
 
-    public StorageItemType ItemType { get; set; } = StorageItemType.Drive;
+    public StorageEntryType EntryType { get; set; } = StorageEntryType.Drive;
 }

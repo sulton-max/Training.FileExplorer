@@ -10,13 +10,13 @@ export class DriveEndpointsClient {
     }
 
     public async getDrivesAsync() {
-        return await this.client.getAsync<Array<StorageDrive>>("drives");
+        return await this.client.getAsync<Array<StorageDrive>>("api/drives");
     }
 
     public async getDriveEntriesAsync(drivePath: string, paginationOptions: FilterPagination) {
         const encodedDrivePath = encodeURIComponent(drivePath);
         const queryString = paginationOptions.convertToQueryParams();
 
-        return await this.client.getAsync<Array<StorageDrive>>(`drives/${encodedDrivePath}/entries?${queryString}`);
+        return await this.client.getAsync<Array<StorageDrive>>(`api/drives/${encodedDrivePath}/entries?${queryString}`);
     }
 }

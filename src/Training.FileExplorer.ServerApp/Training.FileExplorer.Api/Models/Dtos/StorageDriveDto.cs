@@ -21,5 +21,5 @@ public class StorageDriveDto
 
     public long UsedSpace { get; set; }
 
-    public StorageItemType ItemType { get; set; }
+    public StorageEntryType EntryType { get; set; }
 }

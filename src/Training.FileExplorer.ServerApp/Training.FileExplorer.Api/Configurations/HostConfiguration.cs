@@ -14,6 +14,7 @@ public static partial class HostConfiguration
         app.UseDevTools();
         app.UseCustomCors();
         app.MapRoutes();
+        app.UseStaticFiles();
 
         return new ValueTask<WebApplication>(app);
     }

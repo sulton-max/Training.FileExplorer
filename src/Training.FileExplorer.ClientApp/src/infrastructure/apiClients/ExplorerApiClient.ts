@@ -1,20 +1,27 @@
 import ApiClientBase from "@/infrastructure/api/AxiosClient";
 import { DriveEndpointsClient } from "@/infrastructure/apiClients/DriveEndpointsClient";
-import { DirectoryEndpointClient } from "@/infrastructure/apiClients/DirectoryEndpointsClient";
+import { DirectoryEndpointsClient } from "@/infrastructure/apiClients/DirectoryEndpointsClient";
+import { FileEndpointsClient } from "@/infrastructure/apiClients/FileEndpointsClient";
 
 export class ExplorerApiClient {
     private readonly client: ApiClientBase;
+    public readonly baseUrl: string;
 
     constructor() {
+        this.baseUrl = "https://localhost:7195";
+
         this.client = new ApiClientBase({
-            baseURL: "https://localhost:7124/api"
+            baseURL: this.baseUrl
         });
 
         this.drives = new DriveEndpointsClient(this.client);
-        this.directories = new DirectoryEndpointClient(this.client);
+        this.directories = new DirectoryEndpointsClient(this.client);
+        this.files = new FileEndpointsClient(this.client);
     }
 
     public drives: DriveEndpointsClient;
 
-    public directories: DirectoryEndpointClient;
+    public directories: DirectoryEndpointsClient;
+
+    public files: FileEndpointsClient;
 }

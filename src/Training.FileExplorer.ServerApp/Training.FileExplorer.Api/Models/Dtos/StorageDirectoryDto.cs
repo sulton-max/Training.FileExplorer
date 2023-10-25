@@ -11,5 +11,5 @@ public class StorageDirectoryDto
 
     public long ItemsCount { get; set; }
 
-    public StorageItemType ItemType { get; set; }
+    public StorageEntryType EntryType { get; set; }
 }

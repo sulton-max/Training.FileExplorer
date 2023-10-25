@@ -14,5 +14,5 @@ public class StorageFileDto
 
     public string Extension { get; set; } = string.Empty;
 
-    public StorageItemType ItemType { get; set; }
+    public StorageEntryType EntryType { get; set; }
 }

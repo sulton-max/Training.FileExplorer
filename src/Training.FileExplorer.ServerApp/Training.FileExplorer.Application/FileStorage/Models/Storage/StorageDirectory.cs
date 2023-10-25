@@ -8,5 +8,5 @@ public class StorageDirectory : IStorageEntry
 
     public long ItemsCount { get; set; }
 
-    public StorageItemType ItemType { get; set; } = StorageItemType.Directory;
+    public StorageEntryType EntryType { get; set; } = StorageEntryType.Directory;
 }

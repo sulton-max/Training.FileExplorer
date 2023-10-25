@@ -12,5 +12,5 @@ public class StorageFile : IStorageEntry
 
     public string Extension { get; set; } = string.Empty;
 
-    public StorageItemType ItemType { get; set; } = StorageItemType.File;
+    public StorageEntryType EntryType { get; set; } = StorageEntryType.File;
 }

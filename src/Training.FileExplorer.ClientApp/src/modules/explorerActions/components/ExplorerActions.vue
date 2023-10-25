@@ -14,25 +14,38 @@
             <!-- Files statistics -->
             <div class="p-3">
 
-                <div class="p-2 flex text-slate-300 items-center justify-start gap-2">
-                    <img src="../../../assets/icons/document.svg" alt="Document icon" class="w-6 h-6">
-                    Documents
+                <div v-for="filterData in filesFilterData.filterData">
+
+                    <div class="p-2 flex text-slate-300 items-center justify-start gap-2">
+                        <img :src="explorerLocationService.getFileUrl(explorerApiClient.baseUrl, filterData.imageUrl)" alt="Document icon" class="w-6 h-6">
+<!--                        {{filterData.storageFileType.toString()}}-->
+
+                        <span>{{filterData.displayName}}</span>
+                        <span>{{filterData.count}}</span>
+                        <span>{{filterData.size}}</span>
+                    </div>
+
                 </div>
 
-                <div class="p-2 flex text-slate-300 items-center justify-start gap-2">
-                    <img src="../../../assets/icons/image.svg" alt="Document icon" class="w-6 h-6">
-                    Images
-                </div>
+<!--                <div class="p-2 flex text-slate-300 items-center justify-start gap-2">-->
+<!--                    <img src="../../../assets/icons/document.svg" alt="Document icon" class="w-6 h-6">-->
+<!--                    Documents-->
+<!--                </div>-->
 
-                <div class="p-2 flex text-slate-300 items-center justify-start gap-2">
-                    <img src="../../../assets/icons/vscode.svg" alt="Document icon" class="w-6 h-6">
-                    Source code files
-                </div>
+<!--                <div class="p-2 flex text-slate-300 items-center justify-start gap-2">-->
+<!--                    <img src="../../../assets/icons/image.svg" alt="Document icon" class="w-6 h-6">-->
+<!--                    Images-->
+<!--                </div>-->
 
-                <div class="p-2 flex text-slate-300 items-center justify-start gap-2">
-                    <img src="../../../assets/icons/template.svg" alt="Document icon" class="w-6 h-6">
-                    Other files
-                </div>
+<!--                <div class="p-2 flex text-slate-300 items-center justify-start gap-2">-->
+<!--                    <img src="../../../assets/icons/vscode.svg" alt="Document icon" class="w-6 h-6">-->
+<!--                    Source code files-->
+<!--                </div>-->
+
+<!--                <div class="p-2 flex text-slate-300 items-center justify-start gap-2">-->
+<!--                    <img src="../../../assets/icons/template.svg" alt="Document icon" class="w-6 h-6">-->
+<!--                    Other files-->
+<!--                </div>-->
 
             </div>
 
@@ -96,21 +109,33 @@ import DriveCardCompact from "@/modules/explorerActions/components/DriveCardComp
 import type { StorageDrive } from "@/infrastructure/models/entities/StorageDrive";
 import { onMounted, ref } from "vue";
 import { ExplorerApiClient } from "@/infrastructure/apiClients/ExplorerApiClient";
+import type { StorageFileFilterDataModel } from "@/infrastructure/models/filtering/StorageFileFilterDataModel";
+import { ExplorerLocationService } from "@/infrastructure/services/explorerLocationService";
 
 const explorerApiClient = new ExplorerApiClient();
+const explorerLocationService = new ExplorerLocationService();
+
 const drives = ref<StorageDrive[]>([]);
+const filesFilterData = ref<StorageFileFilterDataModel>([]);
 
 onMounted(async () => {
     await loadDrivesAsync();
+    await loadFilesFilterDataAsync();
 });
 
-const  loadDrivesAsync = async () => {
+const loadDrivesAsync = async () => {
     const drivesResponse = await explorerApiClient.drives.getDrivesAsync();
     if (drivesResponse.response) {
         drives.value = drivesResponse.response;
     }
 }
 
-
+const loadFilesFilterDataAsync = async () => {
+    const filesSummary = await explorerApiClient.files.getRootFilesFilterDataAsync();
+    if(filesSummary.response) {
+        console.log('filter data', filesSummary.response)
+        filesFilterData.value = filesSummary.response;
+    }
+}
 
 </script>

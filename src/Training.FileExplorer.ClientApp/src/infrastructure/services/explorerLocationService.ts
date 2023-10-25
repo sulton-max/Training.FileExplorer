@@ -13,4 +13,8 @@ export class ExplorerLocationService {
         const store = useExplorerStore();
         store.setCurrentPath(path);
     }
+
+    getFileUrl(baseUrl: string, fileUrl: string) {
+        return `${baseUrl}/${fileUrl}`;
+    }
 }
