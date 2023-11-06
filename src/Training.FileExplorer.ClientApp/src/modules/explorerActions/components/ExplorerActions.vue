@@ -14,7 +14,7 @@
             <!-- Files statistics -->
             <div class="p-3">
                 <div v-for="filesSummary in filesFilterData.filterData" class="my-2">
-                    <file-summary-card-compact :files-summary="filesSummary"></file-summary-card-compact>
+                    <file-summary-card-compact @onLoadFiles="loadFilesAsync" :files-summary="filesSummary"></file-summary-card-compact>
                 </div>
             </div>
 
@@ -44,6 +44,11 @@ import { ExplorerApiClient } from "@/infrastructure/apiClients/ExplorerApiClient
 import type { StorageFileFilterDataModel } from "@/infrastructure/models/filtering/StorageFileFilterDataModel";
 import { ExplorerLocationService } from "@/infrastructure/services/explorerLocationService";
 import FileSummaryCardCompact from "@/modules/explorerActions/components/FileSummaryCardCompact.vue";
+import type { StorageFileType } from "@/infrastructure/models/filtering/StorageFileType";
+import { StorageFileFilterModel } from "@/infrastructure/models/filtering/StorageFileFilterModel";
+import { useExplorerStore } from "@/common/stores/ExplorerStore";
+
+const explorerStore = useExplorerStore();
 
 const explorerApiClient = new ExplorerApiClient();
 const explorerLocationService = new ExplorerLocationService();
@@ -68,6 +73,16 @@ const loadFilesFilterDataAsync = async () => {
     if(filesSummary.response) {
         filesFilterData.value = filesSummary.response;
     }
+}
+
+const loadFilesAsync = async (fileType: StorageFileType) => {
+    const filterOptions = new StorageFileFilterModel(10000, 1,  [fileType]);
+    explorerStore.setCurrentFilesFilterModel(filterOptions);
+}
+
+const handleOpenDirectory = (directoryPath: string) => {
+    explorerStore.setCurrentPath(directoryPath);
+    explorerStore.setCurrentPath(directoryPath);
 }
 
 </script>

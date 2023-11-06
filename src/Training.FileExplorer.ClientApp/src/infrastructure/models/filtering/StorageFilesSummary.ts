@@ -1,7 +1,7 @@
 import type { StorageFileType } from "@/infrastructure/models/filtering/StorageFileType";
 
 export class StorageFilesSummary {
-    storageFileType!: StorageFileType;
+    fileType!: StorageFileType;
     displayName!: string;
     count!: number;
     size!: number;

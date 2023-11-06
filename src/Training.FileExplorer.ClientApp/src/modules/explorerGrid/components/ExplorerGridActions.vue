@@ -39,11 +39,6 @@
             <!-- Extra actions -->
             <div>
 
-                <button class="rounded-xl h-[40px] flex items-center justify-center gap-4 px-4 bg-blue-600 text-white">
-                    <i class="fas fa-plus"></i>
-                    Create folder
-                </button>
-
             </div>
 
         </div>

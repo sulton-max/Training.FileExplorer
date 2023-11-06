@@ -1,6 +1,6 @@
 <template>
 
-    <div class="p-2 flex text-slate-300 items-center justify-start gap-2 transparent-shadow-off rounded-lg cursor-pointer">
+    <div @click="emit('onLoadFiles', filesSummary.fileType)" class="p-2 flex text-slate-300 items-center justify-start gap-2 transparent-shadow-off rounded-lg cursor-pointer">
         <img :src="explorerLocationService.getFileUrl(explorerApiClient.baseUrl, filesSummary.imageUrl)" alt="File icon" class="w-6 h-6">
 
         <div class="flex w-full">
@@ -17,12 +17,13 @@
 import { ExplorerLocationService } from "@/infrastructure/services/explorerLocationService";
 import { StorageFilesSummary } from "@/infrastructure/models/filtering/StorageFilesSummary";
 import { ExplorerApiClient } from "@/infrastructure/apiClients/ExplorerApiClient";
+import { StorageFileType } from "@/infrastructure/models/filtering/StorageFileType";
 
 const explorerApiClient = new ExplorerApiClient();
 const explorerLocationService = new ExplorerLocationService();
 
 const emit = defineEmits<{
-    onLoadFiles: [directoryPath: string]
+    onLoadFiles: [fileType: StorageFileType]
 }>();
 
 const props = defineProps({
@@ -31,5 +32,7 @@ const props = defineProps({
         required: true
     }
 });
+
+console.log(props.filesSummary?.fileType);
 
 </script>

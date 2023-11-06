@@ -27,21 +27,20 @@ public class FileProcessingService : IFileProcessingService
         var filesPath = _directoryService.GetFilesPath(directoryPath, pagination);
         var files = await _fileService.GetFilesByPathAsync(filesPath);
         
+        var filesSummary = _fileService.GetFilesSummary(files);
+        var filterDataModel = new StorageFileFilterDataModel
+        {
+            FilterData = filesSummary.ToList()
+        };
         
-        // var filesSummary = _fileService.GetFilesSummary(files);
-        // var filterDataModel = new StorageFileFilterDataModel
-        // {
-        //     FilterData = filesSummary.ToList()
-        // };
-        //
-        // return filterDataModel;
+        return filterDataModel;
     }
 
     public async ValueTask<IList<StorageFile>> GetByFilterAsync(StorageFileFilterModel filterModel)
     {
         var filteredFilesPath = _directoryService
             .GetFilesPath(filterModel.DirectoryPath, filterModel)
-            .Where(filePath => filterModel.FileTypes.Contains(_fileService.GetFileType(filePath)));
+            .Where(filePath => filterModel.FilesType.Contains(_fileService.GetFileType(filePath)));
 
         var files = await _fileService.GetFilesByPathAsync(filteredFilesPath);
 

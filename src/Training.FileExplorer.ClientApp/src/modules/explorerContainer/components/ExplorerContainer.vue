@@ -37,10 +37,11 @@ import type { IStorageEntry } from "@/infrastructure/models/entities/IStorageEnt
 import HorizontalDivider from "@/common/components/HorizontalDivider.vue";
 import { useExplorerStore } from "@/common/stores/ExplorerStore";
 import { storeToRefs } from "pinia";
+import { StorageFileFilterModel } from "@/infrastructure/models/filtering/StorageFileFilterModel";
 
 const explorerApiClient = new ExplorerApiClient();
 const explorerStore = useExplorerStore();
-const {currentPath} = storeToRefs(explorerStore);
+const {currentPath, currentFilesFilterModel} = storeToRefs(explorerStore);
 
 onBeforeMount(() => {
     loadGridItemsAsync();
@@ -52,6 +53,11 @@ const isLoading = ref<boolean>(true);
 watch(currentPath, async () => {
     if (currentPath)
         await loadGridItemsAsync();
+});
+
+watch(currentFilesFilterModel, async () => {
+    if (currentFilesFilterModel)
+        await loadGridFilesAsync();
 });
 
 const loadGridItemsAsync = async () => {
@@ -75,6 +81,35 @@ const loadGridItemsAsync = async () => {
         if (pathSegments[pathSegments.length - 1] === 'wwwroot')
             explorerStore.resetCurrentPath();
     }
+
+    isLoading.value = false;
+};
+
+const loadGridFilesAsync = async () => {
+    isLoading.value = true;
+
+    const filterOptions = explorerStore.currentFilesFilterModel as StorageFileFilterModel;
+    const filesResponse = await explorerApiClient.files.getFilesByFilterAsync(filterOptions);
+
+    // const filterModel = new StorageDriveEntryFilterModel(20, 1, true, true);
+    // const entriesResponse = currentPath.value
+    //     ? await explorerApiClient.directories.getEntriesAsync(currentPath.value, filterModel)
+    //     : await explorerApiClient.directories.getRootEntriesAsync(filterModel);
+
+    if (filesResponse.response) {
+        gridItems.value.length = 0;
+        filesResponse.response.forEach((item: IStorageEntry) => {
+            gridItems.value.push(item);
+        });
+    }
+
+            explorerStore.resetCurrentPath();
+
+    // if (explorerStore.currentPath) {
+    //     const pathSegments = explorerStore.currentPath?.split('\\');
+    //
+    //     if (pathSegments[pathSegments.length - 1] === 'wwwroot')
+    // }
 
     isLoading.value = false;
 };

@@ -18,15 +18,16 @@ public class FilesController : ControllerBase
     }
 
     [HttpGet("root/files/filter")]
-    public async ValueTask<IActionResult> GetFilesSummaryAsync()
+    public async ValueTask<IActionResult> GetFilesSummary()
     {
         var result = await _fileProcessingService.GetFilterDataModelAsync(_hostEnvironment.WebRootPath);
         return Ok(result);
     }
 
     [HttpGet("root/files/by-filter")]
-    public async ValueTask<IActionResult> GetFilesAsync([FromBody] StorageFileFilterModel filterModel)
+    public async ValueTask<IActionResult> GetFilesByFilter([FromQuery] StorageFileFilterModel filterModel)
     {
+        filterModel.DirectoryPath = _hostEnvironment.WebRootPath;
         var files = await _fileProcessingService.GetByFilterAsync(filterModel);
         return files.Any() ? Ok(files) : NotFound(files);
     }
