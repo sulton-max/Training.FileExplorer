@@ -12,3 +12,8 @@ public class FileExtensionSettings
 
     public ICollection<string> Extensions { get; set; } = default!;
 }
+
+// Type - SourceCode
+// Name - Source Code
+// ImageUrl - wwwroot/images/souce.code
+// Extension - .cs, .css, .js

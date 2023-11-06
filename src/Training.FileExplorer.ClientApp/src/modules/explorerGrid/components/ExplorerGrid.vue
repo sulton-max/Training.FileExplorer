@@ -40,9 +40,9 @@ import { StorageEntryType } from "@/infrastructure/models/entities/StorageItemTy
 import type { StorageDrive } from "@/infrastructure/models/entities/StorageDrive";
 import { StorageDirectory } from "@/infrastructure/models/entities/StorageDirectory";
 import type { StorageFile } from "@/infrastructure/models/entities/StorageFile";
-import { ExplorerLocationService } from "@/infrastructure/services/explorerLocationService";
+import { useExplorerStore } from "@/common/stores/ExplorerStore";
 
-const explorerService = new ExplorerLocationService();
+const explorerStore = useExplorerStore();
 
 const props = defineProps({
     gridItems: {
@@ -52,7 +52,7 @@ const props = defineProps({
 });
 
 const handleOpenDirectory = (directoryPath: string) => {
-    explorerService.setCurrentPath(directoryPath);
+    explorerStore.setCurrentPath(directoryPath);
 }
 
 </script>

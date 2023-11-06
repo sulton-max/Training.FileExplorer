@@ -64,16 +64,9 @@ const handleBackAction = () => {
         const pathSegments = explorerStore.currentPath?.split('\\');
         const parentPath = pathSegments.slice(0, -1).join('\\');
 
-        console.log(parentPath);
-
         explorerStore.setCurrentPath(parentPath);
     }
 };
-
-const handleForwardAction = () => {
-    console.log('handle forward action');
-};
-
 
 onMounted(() => {
     // console.log('getting breadcrumbs');

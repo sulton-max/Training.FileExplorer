@@ -11,7 +11,7 @@ public class DrivesController : ControllerBase
     [HttpGet]
     public ValueTask<IActionResult> GetAsync([FromServices]IDriveBroker driveBroker)
     {
-        var result = driveBroker.Get();
+        var result = drieBroker.Get();
         return new ValueTask<IActionResult>(Ok(result));
     }
 }

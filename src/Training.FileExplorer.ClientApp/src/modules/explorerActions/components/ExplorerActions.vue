@@ -13,87 +13,19 @@
 
             <!-- Files statistics -->
             <div class="p-3">
-
-                <div v-for="filterData in filesFilterData.filterData">
-
-                    <div class="p-2 flex text-slate-300 items-center justify-start gap-2">
-                        <img :src="explorerLocationService.getFileUrl(explorerApiClient.baseUrl, filterData.imageUrl)" alt="Document icon" class="w-6 h-6">
-<!--                        {{filterData.storageFileType.toString()}}-->
-
-                        <span>{{filterData.displayName}}</span>
-                        <span>{{filterData.count}}</span>
-                        <span>{{filterData.size}}</span>
-                    </div>
-
+                <div v-for="filesSummary in filesFilterData.filterData" class="my-2">
+                    <file-summary-card-compact :files-summary="filesSummary"></file-summary-card-compact>
                 </div>
-
-<!--                <div class="p-2 flex text-slate-300 items-center justify-start gap-2">-->
-<!--                    <img src="../../../assets/icons/document.svg" alt="Document icon" class="w-6 h-6">-->
-<!--                    Documents-->
-<!--                </div>-->
-
-<!--                <div class="p-2 flex text-slate-300 items-center justify-start gap-2">-->
-<!--                    <img src="../../../assets/icons/image.svg" alt="Document icon" class="w-6 h-6">-->
-<!--                    Images-->
-<!--                </div>-->
-
-<!--                <div class="p-2 flex text-slate-300 items-center justify-start gap-2">-->
-<!--                    <img src="../../../assets/icons/vscode.svg" alt="Document icon" class="w-6 h-6">-->
-<!--                    Source code files-->
-<!--                </div>-->
-
-<!--                <div class="p-2 flex text-slate-300 items-center justify-start gap-2">-->
-<!--                    <img src="../../../assets/icons/template.svg" alt="Document icon" class="w-6 h-6">-->
-<!--                    Other files-->
-<!--                </div>-->
-
             </div>
-
-            <horizontal-divider/>
-
-            <!-- Open folders assist -->
-            <div class="p-3">
-
-                <div class="p-2 flex text-slate-300 items-center justify-between rounded-lg transparent-shadow-off">
-                    <div class="flex gap-2 items-center">
-                        <img src="../../../assets/icons/folder.svg" alt="Models" class="w-6 h-6">
-                        Other files
-                    </div>
-                    <i class="fas fa-chevron-right"></i>
-                </div>
-
-                <horizontal-divider class="m-1"/>
-
-                <div class="p-2 flex text-slate-300 items-center justify-between rounded-lg transparent-shadow-off">
-                    <div class="flex gap-2 items-center">
-                        <img src="../../../assets/icons/folder.svg" alt="Models" class="w-6 h-6">
-                        Other files
-                    </div>
-                    <i class="fas fa-chevron-right"></i>
-                </div>
-
-                <horizontal-divider class="m-1"/>
-
-                <div class="p-2 flex text-slate-300 items-center justify-between rounded-lg transparent-shadow-off">
-                    <div class="flex gap-2 items-center">
-                        <img src="../../../assets/icons/folder.svg" alt="Models" class="w-6 h-6">
-                        Other files
-                    </div>
-                    <i class="fas fa-chevron-right"></i>
-                </div>
-
-            </div>
-
-            <horizontal-divider/>
 
         </div>
 
         <!-- My computer statistics -->
         <div class="p-3">
 
-            <div v-for="drive in drives" :key="drive.path">
+            <div v-for="(drive, index) in drives" :key="drive.path">
                 <drive-card-compact :drive="drive"></drive-card-compact>
-                <horizontal-divider class="m-1 w-[90%] place-self-center"/>
+                <horizontal-divider v-if="index !== drives.length - 1" class="m-1 w-[90%] place-self-center"/>
             </div>
 
         </div>
@@ -111,6 +43,7 @@ import { onMounted, ref } from "vue";
 import { ExplorerApiClient } from "@/infrastructure/apiClients/ExplorerApiClient";
 import type { StorageFileFilterDataModel } from "@/infrastructure/models/filtering/StorageFileFilterDataModel";
 import { ExplorerLocationService } from "@/infrastructure/services/explorerLocationService";
+import FileSummaryCardCompact from "@/modules/explorerActions/components/FileSummaryCardCompact.vue";
 
 const explorerApiClient = new ExplorerApiClient();
 const explorerLocationService = new ExplorerLocationService();
@@ -133,7 +66,6 @@ const loadDrivesAsync = async () => {
 const loadFilesFilterDataAsync = async () => {
     const filesSummary = await explorerApiClient.files.getRootFilesFilterDataAsync();
     if(filesSummary.response) {
-        console.log('filter data', filesSummary.response)
         filesFilterData.value = filesSummary.response;
     }
 }
